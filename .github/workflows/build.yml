@@ -28,7 +28,7 @@ jobs:
 
     - name: Build sonic3air + OxygenEngine
       if: matrix.identifier == 'windows'
-      run: dotnet build -a ${{matrix.architecture}} -c ${{matrix.config}} D:\a\sonic3air-actions\sonic3air\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
+      run: dotnet build -a ${{matrix.architecture}} -c ${{matrix.config}} D:\a\sonic3air-actions\sonic3air-actions\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.3
