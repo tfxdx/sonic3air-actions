@@ -22,8 +22,8 @@ jobs:
     
     - name: Build the external dependencies in "framework"
       if: matrix.os == 'windows-2019'
-      run: pushd D:\a\sonic3air-actions\sonic3air-actions\framework\external\
-           .\build_externals_windows.bat
+      run: pushd D:\a\sonic3air-actions\sonic3air-actions\framework\external\ &&
+           .\build_externals_windows.bat &&
            popd
 
     - name: Build sonic3air + OxygenEngine
