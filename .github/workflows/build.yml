@@ -10,27 +10,25 @@ jobs:
     strategy:
       matrix:
         include:
-        - { name: Windows (VS-2019), os: windows-2019, config: Release, architecture: x64}
-        - { name: Windows (VS-2019), os: windows-2019, config: Release, architecture: Win32}
-        - { name: Windows (VS-2019), os: windows-2019, config: Debug, architecture: x64}
-        - { name: Windows (VS-2019), os: windows-2019, config: Debug, architecture: Win32}
-        - { name: Windows (VS-2019), os: windows-2019, config: Release-Enduser, architecture: x64}
-        - { name: Windows (VS-2019), os: windows-2019, config: Release-Enduser, architecture: Win32}
+        - { name: Windows (VS-2019), os: windows-2019, config: Release, architecture: x64, identifier: windows}
+        - { name: Windows (VS-2019), os: windows-2019, config: Release, architecture: Win32, identifier: windows}
+        - { name: Windows (VS-2019), os: windows-2019, config: Debug, architecture: x64, identifier: windows}
+        - { name: Windows (VS-2019), os: windows-2019, config: Debug, architecture: Win32, identifier: windows}
+        - { name: Windows (VS-2019), os: windows-2019, config: Release-Enduser, architecture: x64, identifier: windows}
+        - { name: Windows (VS-2019), os: windows-2019, config: Release-Enduser, architecture: Win32, identifier: windows}
         
     steps:
     - uses: actions/checkout@v4.1.1
     
     - name: Build the external dependencies in "framework"
-      if: matrix.os == 'windows-2019'
+      if: matrix.identifier == 'windows'
       run: pushd D:\a\sonic3air-actions\sonic3air-actions\framework\external\ &&
            .\build_externals_windows.bat &&
            popd
 
     - name: Build sonic3air + OxygenEngine
-      if: matrix.os == 'windows-2019'
-      uses: Elskom/build-dotnet@v1.1.1
-      with:
-        SOLUTION_FILE_PATH: D:\a\sonic3air-actions\sonic3air-actions\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
+      if: matrix.identifier == 'windows'
+      run: dotnet build -a ${{matrix.architecture}} -c ${{matrix.config}}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.3
