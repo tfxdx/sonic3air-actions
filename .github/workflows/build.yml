@@ -28,7 +28,7 @@ jobs:
 
     - name: Build sonic3air + OxygenEngine
       if: matrix.identifier == 'windows'
-      run: SET VCTargetsPath=C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0
+      run: SET "VCTargetsPath=C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0" &&
            dotnet build -p:Architecture=${{matrix.architecture}} -c ${{matrix.config}} D:\a\sonic3air-actions\sonic3air-actions\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
 
     - name: Upload Artifact
