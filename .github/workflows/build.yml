@@ -22,13 +22,13 @@ jobs:
     
     - name: Build the external dependencies in "framework"
       if: matrix.os == 'windows-2019'
-      run: .\framework\externel\build_externals_windows.bat
+      run: D:\a\sonic3air-actions\sonic3air-actions\framework\externel\build_externals_windows.bat
 
     - name: Build sonic3air + OxygenEngine
       if: matrix.os == 'windows-2019'
       uses: Elskom/build-dotnet@v1.1.1
       with:
-        SOLUTION_FILE_PATH: .\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
+        SOLUTION_FILE_PATH: D:\a\sonic3air-actions\sonic3air-actions\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.3
