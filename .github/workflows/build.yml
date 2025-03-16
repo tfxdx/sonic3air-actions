@@ -32,6 +32,6 @@ jobs:
            dotnet build -p:Architecture=${{matrix.architecture}} -c ${{matrix.config}} D:\a\sonic3air-actions\sonic3air-actions\Oxygen\sonic3air\build\_vstudio\sonic3air.sln
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3.1.3
+      uses: actions/upload-artifact@main
       with:
         path: ./Oxygen/sonic3air
